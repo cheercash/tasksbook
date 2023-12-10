@@ -1,6 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --sidebar-w-lg: 14.5rem;
 
   --logo-w: 7.4375rem;
   --logo-h: 54rem;
+}
+
+.body1 {
+  @apply lg:text-body1-lg lg:font-body1-lg leading-default;
+}
+
+.h1 {
+  @apply lg:text-h1-lg lg:font-h1-lg leading-default;
+}
+
+.h2 {
+  @apply lg:text-h2-lg lg:font-h2-lg leading-default;
+}
+
+.h3 {
+  @apply lg:text-h3-lg lg:font-h3-lg leading-default;
+}
+
+.h4 {
+  @apply lg:text-h4-lg lg:font-h4-lg leading-default;
+}
+
+.subtitle1 {
+  @apply lg:text-subtitle1-lg lg:font-subtitle1-lg leading-default;
+}
+
+.subtitle2 {
+  @apply lg:text-subtitle2-lg lg:font-subtitle2-lg leading-default;
+}
+
+.button1 {
+  @apply lg:text-button1-lg lg:font-button1-lg leading-default;
+}
+
+.overline {
+  @apply lg:text-overline-lg lg:font-overline-lg leading-default;
 }
