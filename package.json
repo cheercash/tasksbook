@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "watch:storybook": "storybook dev -p 6006",
-    "build:storybook": "storybook build"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@effector/next": "^0.7.0",
@@ -32,7 +32,6 @@
     "@storybook/addon-links": "^7.6.4",
     "@storybook/addon-onboarding": "^1.0.9",
     "@storybook/blocks": "^7.6.4",
-    "@storybook/cli": "^7.6.4",
     "@storybook/nextjs": "^7.6.4",
     "@storybook/react": "^7.6.4",
     "@storybook/test": "^7.6.4",
