@@ -85,6 +85,8 @@ type IconProps = {
 
 const Icon = tw.i<IconProps>`
 block
+[&>*]:w-full
+[&>*]:h-full
 
 ${(p) => sizeToIconStyles[p.size]}
 ${(p) => (p.position === "start" ? "order-1" : "order-3")}
