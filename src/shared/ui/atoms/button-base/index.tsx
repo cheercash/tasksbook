@@ -56,7 +56,7 @@ export const ButtonBase = ({
         );
 
         clearTimeout(timeout);
-      }, 640);
+      }, 360);
     };
 
   return (

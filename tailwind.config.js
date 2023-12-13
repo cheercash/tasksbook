@@ -85,7 +85,7 @@ module.exports = {
       lg: "0.75rem", // 12px
     },
     animation: {
-      bubble: "bubble 0.32s 1 ease-in-out",
+      bubble: "bubble 0.36s 1 ease-in-out",
     },
     keyframes: {
       bubble: {
