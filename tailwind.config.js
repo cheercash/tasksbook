@@ -59,7 +59,7 @@ module.exports = {
     colors: {
       "accents-primary": "#976ECC",
       "accents-success": "#ECCA75",
-      "accents-warning": "#F05454",
+      "accents-danger": "#F05454",
       "on-accent": "#FFFFFF",
 
       "light-main": "#FAFAFA",
@@ -75,7 +75,29 @@ module.exports = {
       "dark-stroke": "#66666B",
     },
     boxShadow: {
-      default: "0 0.5rem 1.5rem 0 rgba(29, 52, 54, 0.08)",
+      md: "0 0.5rem 1.5rem 0 rgba(29, 52, 54, 0.08)",
+    },
+
+    borderRadius: {
+      full: "50%",
+      sm: "0.25rem", // 8px
+      md: "0.5rem", // 8px
+      lg: "0.75rem", // 12px
+    },
+    animation: {
+      bubble: "bubble 0.36s 1 ease-in-out",
+    },
+    keyframes: {
+      bubble: {
+        from: {
+          width: "0%",
+          opacity: 1,
+        },
+        to: {
+          width: "250%",
+          opacity: 0,
+        },
+      },
     },
   },
   plugins: [],
