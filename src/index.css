@@ -41,6 +41,10 @@
   @apply lg:text-button1-lg lg:font-button1-lg leading-default;
 }
 
-.overline {
-  @apply lg:text-overline-lg lg:font-overline-lg leading-default;
+.overline1 {
+  @apply lg:text-overline1-lg lg:font-overline1-lg leading-default;
+}
+
+.caption1 {
+  @apply lg:text-caption1-lg lg:font-caption1-lg leading-default;
 }

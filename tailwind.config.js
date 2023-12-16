@@ -41,7 +41,8 @@ module.exports = {
       "subtitle2-lg": "0.875rem", // 14px
 
       "button1-lg": "1rem", // 16px
-      "overline-lg": "0.75rem", // 12px
+      "overline1-lg": "0.75rem", // 12px
+      "caption1-lg": "0.625rem", // 10px
     },
     fontWeight: {
       "body1-lg": 400,
@@ -53,7 +54,8 @@ module.exports = {
       "subtitle2-lg": 600,
 
       "button1-lg": 600,
-      "overline-lg": 600,
+      "overline1-lg": 600,
+      "caption1-lg": 500,
     },
 
     colors: {
