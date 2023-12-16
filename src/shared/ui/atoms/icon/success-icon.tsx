@@ -1,4 +1,3 @@
-import tw from "tailwind-styled-components";
 import { IconProps } from "./icon.type";
 
 export const SuccessIcon = (props: IconProps) => (
