@@ -4,12 +4,18 @@ export type MenuProps = {
   title?: string;
   titlePos?: TitlePos;
   children: React.ReactNode;
+  className?: string;
 };
 
 type TitlePos = "start" | "center" | "end";
 
-export const Menu = ({ title, titlePos = "start", children }: MenuProps) => (
-  <MenuEl>
+export const Menu = ({
+  title,
+  titlePos = "start",
+  children,
+  className,
+}: MenuProps) => (
+  <MenuEl className={className}>
     {title && (
       <MenuHeadlineWrap>
         <Title titlePos={titlePos}>{title}</Title>

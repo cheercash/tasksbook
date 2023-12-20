@@ -55,6 +55,7 @@ const Icon = tw.i<IconProps>`
 block
 [&>*]:w-full
 [&>*]:h-full
+[&>*]:duration-sm
 
 ${(p) => sizeToIconStyles[p.size]}
 `;
