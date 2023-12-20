@@ -22,6 +22,12 @@ module.exports = {
       lineHeight: {
         default: "112%",
       },
+      transitionDuration: {
+        xs: "0.08s",
+        sm: "0.16s",
+        md: "0.32s",
+        lg: "0.64s",
+      },
     },
     screens: {
       sm: "36rem", // 576px
@@ -90,6 +96,8 @@ module.exports = {
     },
     animation: {
       bubble: "bubble 0.36s 1 ease-in-out",
+      "dropdown-open": "dropdown-open 0.16s 1 ease-in-out forwards",
+      "dropdown-close": "dropdown-close 0.16s 0.16s 1 ease-in-out forwards",
     },
     keyframes: {
       bubble: {
@@ -101,6 +109,14 @@ module.exports = {
           width: "250%",
           opacity: 0,
         },
+      },
+      "dropdown-open": {
+        "0%": {
+          display: "block",
+        },
+      },
+      "dropdown-close": {
+        "0%": { display: "none" },
       },
     },
   },
