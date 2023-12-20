@@ -67,14 +67,16 @@ module.exports = {
       "light-main": "#FAFAFA",
       "light-contrast": "#282846",
       "light-surface": "#FFFFFF",
-      "light-opacitied": "#DDDDE1",
-      "light-stroke": "#E9E9EC",
+      "light-surface-active": "#D4D4DA",
+      "light-opacitied": "#9D9DB2",
+      "light-stroke": "#EEEEF0",
 
       "dark-main": "#222831",
-      "dark-contrast": "#F9F9F9",
+      "dark-contrast": "#D9D9D9",
       "dark-surface": "#2C3440",
-      "dark-opacitied": "#DDDDE1",
-      "dark-stroke": "#66666B",
+      "dark-surface-active": "#555B65",
+      "dark-opacitied": "#86868B",
+      "dark-stroke": "#3C444F",
     },
     boxShadow: {
       md: "0 0.5rem 1.5rem 0 rgba(29, 52, 54, 0.08)",
@@ -82,7 +84,7 @@ module.exports = {
 
     borderRadius: {
       full: "50%",
-      sm: "0.25rem", // 8px
+      sm: "0.25rem", // 4px
       md: "0.5rem", // 8px
       lg: "0.75rem", // 12px
     },

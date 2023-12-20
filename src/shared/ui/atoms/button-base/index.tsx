@@ -184,19 +184,19 @@ const variantAndColorToBubbleStyles: Record<
 > = {
   contained: {
     danger: "bg-light-main",
-    inherit: "bg-light-contrast",
+    inherit: "bg-light-surface-active dark:bg-dark-surface-active",
     primary: "bg-light-main",
     success: "bg-light-main",
   },
   outlined: {
     danger: "bg-accents-danger",
-    inherit: "bg-light-contrast",
+    inherit: "bg-light-surface-active dark:bg-dark-surface-active",
     primary: "bg-accents-primary",
     success: "bg-accents-success",
   },
   ghost: {
     danger: "bg-accents-danger",
-    inherit: "bg-light-contrast",
+    inherit: "bg-light-surface-active dark:bg-dark-surface-active",
     primary: "bg-accents-primary",
     success: "bg-accents-success",
   },
@@ -205,13 +205,12 @@ const variantAndColorToBubbleStyles: Record<
 const Bubble = tw.i<BubbleProps>`
 block
 pt-[100%]
-bg-accents-primary
 rounded-full
 
 -translate-x-1/2
 -translate-y-1/2
-opacity-25
 
+${(p) => p.color !== "inherit" && "opacity-10"}
 
 ${(p) => variantAndColorToBubbleStyles[p.variant][p.color]}
 `;
