@@ -8,18 +8,18 @@ export type MenuProps = {
 
 type TitlePos = "start" | "center" | "end";
 
-export const Menu = ({ title, titlePos = "start", children }: MenuProps) => {
-  return (
-    <MenuEl>
-      {title && (
-        <MenuHeadlineWrap>
-          <Title titlePos={titlePos}>{title}</Title>
-        </MenuHeadlineWrap>
-      )}
-      <MenuBodyWrap>{children}</MenuBodyWrap>
-    </MenuEl>
-  );
-};
+export const Menu = ({ title, titlePos = "start", children }: MenuProps) => (
+  <MenuEl>
+    {title && (
+      <MenuHeadlineWrap>
+        <Title titlePos={titlePos}>{title}</Title>
+      </MenuHeadlineWrap>
+    )}
+    <MenuBodyWrap hasTitle={typeof title !== "undefined"}>
+      {children}
+    </MenuBodyWrap>
+  </MenuEl>
+);
 
 const MenuEl = tw.div`
 flex
@@ -65,8 +65,12 @@ text-ellipsis
 ${(p) => titlePosToStyles[p.titlePos]}
 `;
 
-const MenuBodyWrap = tw.div`
-mb-4
+type MenuBodyWrapProps = {
+  hasTitle: boolean;
+};
+
+const MenuBodyWrap = tw.div<MenuBodyWrapProps>`
 flex-1
 overflow-y-auto
+${(p) => (p.hasTitle ? "mb-4" : "my-2")}
 `;
