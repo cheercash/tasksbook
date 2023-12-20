@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { forwardRef, useRef, useState } from "react";
 import tw from "tailwind-styled-components";
 
 export type DropdownProps = {
@@ -13,33 +13,29 @@ type AlignX = "start" | "center" | "end";
 
 type AlignY = "bottom" | "top";
 
-export const Dropdown = ({
-  anchor,
-  children,
-  isOpen,
-  alignX,
-  alignY,
-}: DropdownProps) => (
-  <DropdownEl>
-    <AnchorWrapper>{anchor}</AnchorWrapper>
-    <BodyWrap
-      alignX={alignX}
-      alignY={alignY}
-    >
-      <BodyWrapper
+export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
+  ({ anchor, children, isOpen, alignX, alignY }, ref) => (
+    <DropdownEl ref={ref}>
+      <AnchorWrapper>{anchor}</AnchorWrapper>
+      <BodyWrap
         alignX={alignX}
         alignY={alignY}
       >
-        <Body
-          isOpen={isOpen}
+        <BodyWrapper
           alignX={alignX}
           alignY={alignY}
         >
-          {children}
-        </Body>
-      </BodyWrapper>
-    </BodyWrap>
-  </DropdownEl>
+          <Body
+            isOpen={isOpen}
+            alignX={alignX}
+            alignY={alignY}
+          >
+            {children}
+          </Body>
+        </BodyWrapper>
+      </BodyWrap>
+    </DropdownEl>
+  ),
 );
 
 //
@@ -72,7 +68,8 @@ type BodyWrapProps = { alignX: AlignX; alignY: AlignY };
 
 const BodyWrap = tw.div<BodyWrapProps>`
 absolute
-
+min-w-fit
+w-full
 ${(p) => alignmentToBodyWrapStyles[p.alignY][p.alignX]}
 `;
 
