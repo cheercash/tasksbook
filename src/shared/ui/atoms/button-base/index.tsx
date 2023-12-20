@@ -148,15 +148,15 @@ disabled:cursor-not-allowed
 
 ${(p) =>
   p.variant === "contained" &&
-  "disabled:bg-light-opacitied disabled:text-light-stroke dark:disabled:bg-dark-opacitied dark:disabled:text-dark-stroke"}
+  "disabled:bg-light-stroke disabled:text-light-surface-active dark:disabled:bg-dark-stroke dark:disabled:text-dark-surface-active"}
 
 ${(p) =>
   p.variant === "outlined" &&
-  "disabled:border-light-opacitied disabled:text-light-stroke dark:disabled:border-dark-opacitied dark:disabled:text-dark-stroke"}
+  "disabled:border-light-stroke disabled:text-light-surface-active dark:disabled:border-dark-stroke dark:disabled:text-dark-surface-active"}
 
 ${(p) =>
   p.variant === "ghost" &&
-  "disabled:text-light-stroke dark:disabled:text-dark-stroke"}
+  "disabled:text-light-surface-active dark:disabled:text-dark-surface-active"}
 
 ${(p) => p.shape !== "square" && p.fullWidth && "w-full"}
 
