@@ -73,9 +73,9 @@ button1
 `;
 
 const sizeToIconStyles: Record<ButtonSize, string> = {
-  lg: "w-5 h-5",
-  md: "w-4 h-4",
-  sm: "w-3 h-3",
+  lg: "h-5",
+  md: "h-4",
+  sm: "h-3",
 };
 
 type IconProps = {

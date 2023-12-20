@@ -113,7 +113,6 @@ pointer-events-none
 
 const IconWrapper = tw.i`
 block
-w-4
 h-4
 [&>*]:w-full
 [&>*]:h-full
