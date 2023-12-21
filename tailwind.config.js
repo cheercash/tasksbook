@@ -13,6 +13,14 @@ module.exports = {
         "el-md-icon": "0.875rem", // 14px
         "el-lg-icon": "1rem", // 16px
 
+        "el-sm-px": "1rem", // 16px
+        "el-md-px": "1.25rem", // 20px
+        "el-lg-px": "2rem", // 32px
+
+        "input-sm-icon-px": "2.25rem", // 36px
+        "input-md-icon-px": "2.75rem", // 44px
+        "input-lg-icon-px": "4rem", // 64px
+
         "px-xs": "1rem", // 16px
         "px-lg": "2rem", // 32px
         "px-2xl": "4rem", // 64px
