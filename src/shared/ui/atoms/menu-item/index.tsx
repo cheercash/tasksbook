@@ -29,19 +29,17 @@ export const MenuItem = ({
 
     onClick?.(e);
 
-    if (selectContext) {
-      if (value && selectContext?.state?.value !== value) {
-        selectContext.setState({
-          children: children,
-          value: value,
-          icon: icon,
-        });
-
-        selectContext.setIsOpen(false);
-      }
-    }
-
     if (active) return;
+
+    if (selectContext && value) {
+      selectContext.setState({
+        children: children,
+        value: value,
+        icon: icon,
+      });
+
+      selectContext.setIsOpen(false);
+    }
   };
 
   return (
