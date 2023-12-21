@@ -2,6 +2,7 @@ import tw from "tailwind-styled-components";
 import { ChevronDownIcon, Dropdown, Menu, MenuItemProps } from "../../atoms";
 import { useState } from "react";
 import { SelectContext } from "root/shared/context/select";
+import { useDropdown } from "root/shared/hooks";
 
 export type SelectProps = {
   icon?: JSX.Element;
@@ -26,11 +27,12 @@ export const Select = ({
 }: SelectProps) => {
   const [state, setState] = useState<SelectState | null>(null);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const { dropdownRef, isOpen, setIsOpen } = useDropdown();
 
   return (
-    <SelectContext.Provider value={{ state: state, setState }}>
+    <SelectContext.Provider value={{ state: state, setState, setIsOpen }}>
       <Dropdown
+        ref={dropdownRef}
         fullWidth={fullWidth}
         alignX="center"
         alignY="bottom"
@@ -43,7 +45,12 @@ export const Select = ({
             onClick={() => setIsOpen((v) => !v)}
           >
             <SelectInner>
-              <IconWrapper>{state?.icon ? state.icon : icon}</IconWrapper>
+              {((state && state.icon) || (!state && icon)) && (
+                <IconWrapper>
+                  {!state && icon}
+                  {state && state.icon && state.icon}
+                </IconWrapper>
+              )}
               <SelectTitle>
                 {state?.children ? state.children : title}
               </SelectTitle>
@@ -104,8 +111,8 @@ ${(p) =>
 //
 const SelectInner = tw.span`
 flex
-items-center
 flex-1
+items-center
 gap-3
 overflow-hidden
 `;
@@ -123,8 +130,8 @@ text-ellipsis
 
 //
 const IconEl = tw.i`
-strink-0
 block
+strink-0
 duration-sm
 [&>*]:w-full
 [&>*]:h-full

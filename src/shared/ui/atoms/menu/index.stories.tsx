@@ -18,23 +18,19 @@ const Items = (
   <>
     <MenuItem
       children="Item default"
-      active={false}
       disabled={false}
     />
     <MenuItem
       children="Item active"
-      active={true}
       disabled={false}
     />
     <MenuItem
       children="Item active disabled"
-      active={true}
       disabled={true}
       icon={<WarningIcon />}
     />
     <MenuItem
       children="Item disabled"
-      active={false}
       disabled={true}
     />
     <MenuItem children="Item" />

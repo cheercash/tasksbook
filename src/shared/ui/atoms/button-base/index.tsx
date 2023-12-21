@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useBubble } from "root/shared/hooks";
 import tw from "tailwind-styled-components";
 
 export type ButtonBaseProps = {
@@ -33,30 +33,13 @@ export const ButtonBase = ({
   shape,
   fullWidth,
 }: ButtonBaseProps) => {
-  const [bubbles, setBubbles] = useState<
-    { x: number; y: number; key: string }[]
-  >([]);
+  const { addBubble, bubbles } = useBubble();
 
   const handleClick: React.ButtonHTMLAttributes<HTMLButtonElement>["onClick"] =
     (e) => {
       onClick?.(e);
 
-      setBubbles((prev) => [
-        {
-          key: Date.now().toString(),
-          x: e.nativeEvent.offsetX,
-          y: e.nativeEvent.offsetY,
-        },
-        ...prev,
-      ]);
-
-      const timeout = setTimeout(() => {
-        setBubbles((prev) =>
-          prev.filter((_, idx, arr) => idx !== arr.length - 1),
-        );
-
-        clearTimeout(timeout);
-      }, 360);
+      addBubble(e);
     };
 
   return (
@@ -143,7 +126,6 @@ type ButtonBaseElProps = {
 const ButtonBaseEl = tw.button<ButtonBaseElProps>`
 relative
 overflow-hidden
-
 disabled:cursor-not-allowed
 
 ${(p) =>
@@ -206,7 +188,6 @@ const Bubble = tw.i<BubbleProps>`
 block
 pt-[100%]
 rounded-full
-
 -translate-x-1/2
 -translate-y-1/2
 

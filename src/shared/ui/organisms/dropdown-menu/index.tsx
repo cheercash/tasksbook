@@ -6,8 +6,8 @@ import {
   Menu,
   MenuProps,
 } from "../../atoms";
-import { useEffect, useRef, useState } from "react";
 import { Button, ButtonProps, IconButton } from "../../molecules";
+import { useDropdown } from "root/shared/hooks";
 
 export type DropdownMenuProps = {
   menuTitle?: string;
@@ -39,7 +39,7 @@ export const DropdownMenu = ({
   buttonColor,
   disabled,
 }: DropdownMenuProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { dropdownRef, isOpen, setIsOpen } = useDropdown();
 
   const anchor = buttonTitle ? (
     <Button
@@ -68,20 +68,6 @@ export const DropdownMenu = ({
       )}
     </IconButton>
   );
-
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const clickHandler = (e: MouseEvent) => {
-      if (!e.composedPath().includes(dropdownRef.current!)) {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener("click", clickHandler);
-
-    return () => window.removeEventListener("click", clickHandler);
-  }, []);
 
   return (
     <Dropdown
