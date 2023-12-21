@@ -87,6 +87,8 @@ dark:border-dark-stroke
 
 outline-none
 
+${(p) => p.fullWidth && "w-full"}
+
 ${(p) => sizeToStyles[p.elSize]}
 
 ${(p) => p.hasIcon && iconPosAndSizeToStyles[p.iconPos][p.elSize]}
