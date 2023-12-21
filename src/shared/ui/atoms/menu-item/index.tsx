@@ -1,25 +1,28 @@
-import { useState } from "react";
+import { useContext } from "react";
 import tw from "tailwind-styled-components";
-import { WarningIcon } from "..";
+import { SelectContext } from "root/shared/context/select";
 
 export type MenuItemProps = {
-  active?: boolean;
   disabled?: boolean;
-  children: string;
+  children: React.ReactNode;
   icon?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
+  value?: string;
 };
 
 export const MenuItem = ({
   children,
-  active = false,
   disabled = false,
   icon,
   onClick,
+  value,
 }: MenuItemProps) => {
-  const [bubbles, setBubbles] = useState<
-    { x: number; y: number; key: string }[]
-  >([]);
+  const selectContext = useContext(SelectContext);
+
+  const active =
+    selectContext && selectContext.state?.value && value
+      ? selectContext.state.value === value
+      : false;
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     if (disabled) return;
@@ -28,22 +31,15 @@ export const MenuItem = ({
 
     if (active) return;
 
-    setBubbles((prev) => [
-      {
-        key: Date.now().toString(),
-        x: e.nativeEvent.offsetX,
-        y: e.nativeEvent.offsetY,
-      },
-      ...prev,
-    ]);
+    if (selectContext && value) {
+      selectContext.setState({
+        children: children,
+        value: value,
+        icon: icon,
+      });
 
-    const timeout = setTimeout(() => {
-      setBubbles((prev) =>
-        prev.filter((_, idx, arr) => idx !== arr.length - 1),
-      );
-
-      clearTimeout(timeout);
-    }, 360);
+      selectContext.setIsOpen(false);
+    }
   };
 
   return (
@@ -57,14 +53,6 @@ export const MenuItem = ({
         {icon && <IconWrapper>{icon}</IconWrapper>}
         <TextWrapper>{children}</TextWrapper>
       </MenuItemInner>
-      {bubbles.map((item) => (
-        <BubbleWrapper
-          style={{ left: item.x + "px", top: item.y + "px" }}
-          key={item.key}
-        >
-          <Bubble />
-        </BubbleWrapper>
-      ))}
     </MenuItemEl>
   );
 };
@@ -80,19 +68,19 @@ const activeAndDisabledToStyles: Record<
 > = {
   "non-active": {
     "non-disabled":
-      "bg-light-surface text-light-contrast dark:bg-dark-surface dark:text-dark-contrast",
+      "bg-light-surface text-light-contrast hover:bg-light-stroke active:bg-light-surface-active dark:bg-dark-surface dark:text-dark-contrast dark:hover:bg-dark-stroke dark:active:bg-dark-surface-active",
     disabled: "text-light-stroke dark:text-dark-stroke",
   },
   active: {
     "non-disabled":
-      "bg-light-stroke text-light-contrast dark:bg-dark-stroke dark:text-dark-contrast",
+      "bg-light-surface-active text-light-contrast dark:bg-dark-surface-active dark:text-dark-contrast",
     disabled: "text-light-stroke dark:text-dark-stroke",
   },
 };
 
 const MenuItemEl = tw.div<MenuItemElProps>`
 relative
-px-5
+px-6
 overflow-hidden
 
 ${(p) => p.disabled && "cursor-not-allowed"}
@@ -106,14 +94,14 @@ ${(p) =>
 const MenuItemInner = tw.div`
 flex
 items-center
-gap-2
+gap-3
 h-el-md
 pointer-events-none
 `;
 
 const IconWrapper = tw.i`
 block
-h-4
+h-el-md-icon
 [&>*]:w-full
 [&>*]:h-full
 `;
@@ -125,21 +113,4 @@ block
 overflow-hidden
 whitespace-nowrap
 text-ellipsis
-`;
-
-const BubbleWrapper = tw.i`
-block
-absolute
-pointer-events-none
-animate-bubble
-`;
-
-const Bubble = tw.i`
-block
-pt-[100%]
-rounded-full
-bg-light-surface-active
-dark:bg-dark-surface-active
--translate-x-1/2
--translate-y-1/2
 `;

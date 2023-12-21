@@ -9,6 +9,10 @@ module.exports = {
         "el-lg": "3.75rem", // 60px
         "el-xl": "6.25rem", // 100px
 
+        "el-sm-icon": "0.75rem", // 12px
+        "el-md-icon": "0.875rem", // 14px
+        "el-lg-icon": "1rem", // 16px
+
         "px-xs": "1rem", // 16px
         "px-lg": "2rem", // 32px
         "px-2xl": "4rem", // 64px
