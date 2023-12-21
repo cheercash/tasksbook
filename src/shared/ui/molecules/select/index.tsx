@@ -1,6 +1,7 @@
 import tw from "tailwind-styled-components";
-import { ChevronDownIcon, Dropdown, Menu } from "../../atoms";
+import { ChevronDownIcon, Dropdown, Menu, MenuItemProps } from "../../atoms";
 import { useState } from "react";
+import { SelectContext } from "root/shared/context/select";
 
 export type SelectProps = {
   icon?: JSX.Element;
@@ -10,6 +11,12 @@ export type SelectProps = {
   children: JSX.Element | JSX.Element[];
 };
 
+export type SelectState = {
+  icon?: MenuItemProps["icon"];
+  value: MenuItemProps["value"];
+  children: MenuItemProps["children"];
+};
+
 export const Select = ({
   children,
   disabled,
@@ -17,33 +24,39 @@ export const Select = ({
   icon,
   title,
 }: SelectProps) => {
+  const [state, setState] = useState<SelectState | null>(null);
+
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Dropdown
-      fullWidth={fullWidth}
-      alignX="center"
-      alignY="bottom"
-      isOpen={isOpen}
-      anchor={
-        <SelectEl
-          fullWidth={fullWidth}
-          isOpen={isOpen}
-          disabled={disabled}
-          onClick={() => setIsOpen((v) => !v)}
-        >
-          <SelectInner>
-            <IconWrapper>{icon}</IconWrapper>
-            <SelectTitle>{title}</SelectTitle>
-          </SelectInner>
-          <ArrowWrapper isOpen={isOpen}>
-            <ChevronDownIcon />
-          </ArrowWrapper>
-        </SelectEl>
-      }
-    >
-      <Menu>{children}</Menu>
-    </Dropdown>
+    <SelectContext.Provider value={{ state: state, setState }}>
+      <Dropdown
+        fullWidth={fullWidth}
+        alignX="center"
+        alignY="bottom"
+        isOpen={isOpen}
+        anchor={
+          <SelectEl
+            fullWidth={fullWidth}
+            isOpen={isOpen}
+            disabled={disabled}
+            onClick={() => setIsOpen((v) => !v)}
+          >
+            <SelectInner>
+              <IconWrapper>{state?.icon ? state.icon : icon}</IconWrapper>
+              <SelectTitle>
+                {state?.children ? state.children : title}
+              </SelectTitle>
+            </SelectInner>
+            <ArrowWrapper isOpen={isOpen}>
+              <ChevronDownIcon />
+            </ArrowWrapper>
+          </SelectEl>
+        }
+      >
+        <Menu>{children}</Menu>
+      </Dropdown>
+    </SelectContext.Provider>
   );
 };
 

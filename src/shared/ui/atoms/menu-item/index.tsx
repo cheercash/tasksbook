@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import tw from "tailwind-styled-components";
 import { WarningIcon } from "..";
+import { SelectContext } from "root/shared/context/select";
 
 export type MenuItemProps = {
   active?: boolean;
@@ -8,6 +9,7 @@ export type MenuItemProps = {
   children: React.ReactNode;
   icon?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
+  value?: string;
 };
 
 export const MenuItem = ({
@@ -16,15 +18,28 @@ export const MenuItem = ({
   disabled = false,
   icon,
   onClick,
+  value,
 }: MenuItemProps) => {
   const [bubbles, setBubbles] = useState<
     { x: number; y: number; key: string }[]
   >([]);
 
+  const selectContext = useContext(SelectContext);
+
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     if (disabled) return;
 
     onClick?.(e);
+
+    if (selectContext) {
+      if (value) {
+        selectContext.setState({
+          children: children,
+          value: value,
+          icon: icon,
+        });
+      }
+    }
 
     if (active) return;
 
@@ -45,6 +60,18 @@ export const MenuItem = ({
       clearTimeout(timeout);
     }, 360);
   };
+
+  useEffect(() => {
+    if (active) {
+      if (selectContext) {
+        selectContext.setState({
+          children: children,
+          value: value,
+          icon: icon,
+        });
+      }
+    }
+  }, [active, selectContext]);
 
   return (
     <MenuItemEl
