@@ -80,7 +80,7 @@ const activeAndDisabledToStyles: Record<
 
 const MenuItemEl = tw.div<MenuItemElProps>`
 relative
-px-6
+px-el-md-px
 overflow-hidden
 
 ${(p) => p.disabled && "cursor-not-allowed"}

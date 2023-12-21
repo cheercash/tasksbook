@@ -2,18 +2,17 @@ import tw from "tailwind-styled-components";
 
 export type InputBaseProps = {
   size: InputSize;
-  fullWidth?: boolean;
   hasIcon: boolean;
   iconPos?: IconPos;
 
   type?: React.InputHTMLAttributes<HTMLInputElement>["type"];
   onChange?: React.InputHTMLAttributes<HTMLInputElement>["onChange"];
   onFocus?: React.InputHTMLAttributes<HTMLInputElement>["onFocus"];
-  autoFocus?: React.InputHTMLAttributes<HTMLInputElement>["autoFocus"];
+  autoFocus?: boolean;
   value?: React.InputHTMLAttributes<HTMLInputElement>["value"];
-  name?: React.InputHTMLAttributes<HTMLInputElement>["name"];
-  placeholder?: React.InputHTMLAttributes<HTMLInputElement>["placeholder"];
-  autoComplete?: React.InputHTMLAttributes<HTMLInputElement>["autoComplete"];
+  name: string;
+  placeholder?: string;
+  autoComplete?: string;
   disabled?: boolean;
 };
 
@@ -23,16 +22,15 @@ type IconPos = "start" | "end";
 
 export const InputBase = ({
   size,
-  fullWidth = false,
   hasIcon,
   iconPos = "start",
   ...rest
 }: InputBaseProps) => (
   <InputBaseEl
     elSize={size}
-    fullWidth={fullWidth}
     hasIcon={hasIcon}
     iconPos={iconPos}
+    id={rest.name}
     {...rest}
   />
 );
@@ -59,13 +57,13 @@ const iconPosAndSizeToStyles: Record<IconPos, Record<InputSize, string>> = {
 
 type InputBaseElProps = {
   elSize: InputSize;
-  fullWidth: boolean;
   hasIcon: boolean;
   iconPos: IconPos;
 };
 
 const InputBaseEl = tw.input<InputBaseElProps>`
 body1
+w-full
 bg-[transparent]
 duration-sm
 border
@@ -75,19 +73,18 @@ text-light-contrast
 disabled:text-light-surface-active
 placeholder-light-surface-active
 border-light-stroke
-[&:not(:disabled)]hover:border-light-contrast
-[&:not(:disabled)]focus:border-light-contrast
+[&:not(:disabled)]:hover:border-light-contrast
+[&:not(:disabled)]:focus:border-light-contrast
 
 dark:text-dark-contrast
 disabled:dark:text-dark-surface-active
 dark:placeholder-dark-surface-active
 dark:border-dark-stroke
-[&:not(:disabled)]dark:hover:border-dark-contrast
-[&:not(:disabled)]dark:focus:border-dark-contrast
+[&:not(:disabled)]:dark:hover:border-dark-contrast
+[&:not(:disabled)]:dark:focus:border-dark-contrast
 
 outline-none
 
-${(p) => p.fullWidth && "w-full"}
 
 ${(p) => sizeToStyles[p.elSize]}
 

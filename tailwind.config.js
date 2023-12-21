@@ -14,7 +14,7 @@ module.exports = {
         "el-lg-icon": "1rem", // 16px
 
         "el-sm-px": "1rem", // 16px
-        "el-md-px": "1.25rem", // 20px
+        "el-md-px": "1.5rem", // 24px
         "el-lg-px": "2rem", // 32px
 
         "input-sm-icon-px": "2.25rem", // 36px

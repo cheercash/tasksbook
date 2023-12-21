@@ -74,7 +74,7 @@ type SelectElProps = {
 };
 
 const SelectEl = tw.button<SelectElProps>`
-px-6
+px-el-md-px
 flex
 items-center
 gap-8

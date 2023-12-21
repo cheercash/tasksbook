@@ -15,7 +15,6 @@ type Story = StoryObj<typeof Component>;
 
 export const InputBase: Story = {
   args: {
-    fullWidth: false,
     hasIcon: false,
     iconPos: "start",
     size: "md",

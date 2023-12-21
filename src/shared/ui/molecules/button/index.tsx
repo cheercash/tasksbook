@@ -48,9 +48,9 @@ export const Button = ({
 );
 
 const sizeToStyles: Record<ButtonSize, string> = {
-  lg: "px-8 gap-4",
-  md: "px-6 gap-3",
-  sm: "px-4 gap-2",
+  lg: "px-el-lg-px gap-4",
+  md: "px-el-md-px gap-3",
+  sm: "px-el-sm-px gap-2",
 };
 
 type ButtonInnerElProps = {
