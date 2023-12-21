@@ -39,7 +39,7 @@ overflow-hidden
 `;
 
 const MenuHeadlineWrap = tw.div`
-px-5
+px-6
 py-4
 flex
 items-center

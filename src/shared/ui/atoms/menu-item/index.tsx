@@ -5,7 +5,7 @@ import { WarningIcon } from "..";
 export type MenuItemProps = {
   active?: boolean;
   disabled?: boolean;
-  children: string;
+  children: React.ReactNode;
   icon?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
@@ -92,7 +92,7 @@ const activeAndDisabledToStyles: Record<
 
 const MenuItemEl = tw.div<MenuItemElProps>`
 relative
-px-5
+px-6
 overflow-hidden
 
 ${(p) => p.disabled && "cursor-not-allowed"}
@@ -106,14 +106,14 @@ ${(p) =>
 const MenuItemInner = tw.div`
 flex
 items-center
-gap-2
+gap-3
 h-el-md
 pointer-events-none
 `;
 
 const IconWrapper = tw.i`
 block
-h-4
+h-el-md-icon
 [&>*]:w-full
 [&>*]:h-full
 `;

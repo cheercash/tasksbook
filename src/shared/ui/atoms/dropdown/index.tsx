@@ -7,6 +7,7 @@ export type DropdownProps = {
   isOpen: boolean;
   alignX: AlignX;
   alignY: AlignY;
+  fullWidth?: boolean;
 };
 
 type AlignX = "start" | "center" | "end";
@@ -14,9 +15,12 @@ type AlignX = "start" | "center" | "end";
 type AlignY = "bottom" | "top";
 
 export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
-  ({ anchor, children, isOpen, alignX, alignY }, ref) => (
-    <DropdownEl ref={ref}>
-      <AnchorWrapper>{anchor}</AnchorWrapper>
+  ({ anchor, children, isOpen, alignX, alignY, fullWidth = false }, ref) => (
+    <DropdownEl
+      fullWidth={fullWidth}
+      ref={ref}
+    >
+      <AnchorWrapper fullWidth={fullWidth}>{anchor}</AnchorWrapper>
       <BodyWrap
         alignX={alignX}
         alignY={alignY}
@@ -39,14 +43,23 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
 );
 
 //
+type DropdownElProps = {
+  fullWidth: boolean;
+};
 
-const DropdownEl = tw.div`
+const DropdownEl = tw.div<DropdownElProps>`
 relative
-w-fit
+${(p) => (p.fullWidth ? "w-full" : "w-fit")}
 `;
 
-const AnchorWrapper = tw.div`
-w-fit
+//
+
+type AnchorWrapperProps = {
+  fullWidth: boolean;
+};
+
+const AnchorWrapper = tw.div<AnchorWrapperProps>`
+${(p) => (p.fullWidth ? "w-full" : "w-fit")}
 `;
 
 //
