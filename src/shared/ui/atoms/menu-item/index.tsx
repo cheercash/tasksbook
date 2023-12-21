@@ -30,20 +30,14 @@ export const MenuItem = ({
     onClick?.(e);
 
     if (selectContext) {
-      if (value) {
+      if (value && selectContext?.state?.value !== value) {
         selectContext.setState({
           children: children,
           value: value,
           icon: icon,
         });
 
-        if (
-          selectContext.state &&
-          typeof selectContext.state.value !== undefined &&
-          selectContext.state.value !== value
-        ) {
-          selectContext.setIsOpen(false);
-        }
+        selectContext.setIsOpen(false);
       }
     }
 
