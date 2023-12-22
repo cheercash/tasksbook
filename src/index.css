@@ -13,6 +13,10 @@
   @apply lg:text-body1-lg lg:font-body1-lg leading-default;
 }
 
+.body2 {
+  @apply lg:text-body2-lg lg:font-body2-lg leading-default;
+}
+
 .h1 {
   @apply lg:text-h1-lg lg:font-h1-lg leading-default;
 }

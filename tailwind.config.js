@@ -51,6 +51,7 @@ module.exports = {
 
     fontSize: {
       "body1-lg": "0.875rem", // 14px
+      "body2-lg": "0.75rem", // 12px
       "h1-lg": "2.25rem", // 36px
       "h2-lg": "1.5rem", // 24px
       "h3-lg": "1.25rem", // 20px
@@ -64,6 +65,7 @@ module.exports = {
     },
     fontWeight: {
       "body1-lg": 400,
+      "body2-lg": 400,
       "h1-lg": 600,
       "h2-lg": 600,
       "h3-lg": 700,
