@@ -4,3 +4,4 @@ export * from "./menu";
 export * from "./menu-item";
 export * from "./dropdown";
 export * from "./input-base";
+export * from "./avatar";
