@@ -1,3 +1,4 @@
+import tw from "tailwind-styled-components";
 import {
   ButtonBaseProps,
   ChevronDownIcon,
@@ -23,6 +24,8 @@ export type DropdownMenuProps = {
   buttonVariant?: ButtonBaseProps["variant"];
   buttonColor?: ButtonBaseProps["color"];
   disabled?: boolean;
+
+  menuWrapperClassName?: string;
 };
 
 export const DropdownMenu = ({
@@ -38,6 +41,7 @@ export const DropdownMenu = ({
   buttonVariant,
   buttonColor,
   disabled,
+  menuWrapperClassName,
 }: DropdownMenuProps) => {
   const { dropdownRef, isOpen, setIsOpen } = useDropdown();
 
@@ -77,13 +81,17 @@ export const DropdownMenu = ({
       alignY={alignY}
       anchor={anchor}
     >
-      <Menu
-        className="max-h-80"
-        title={menuTitle}
-        titlePos={menuTitlePos}
-      >
-        {children}
-      </Menu>
+      <MenuWrapper className={menuWrapperClassName}>
+        <Menu
+          className="max-h-80"
+          title={menuTitle}
+          titlePos={menuTitlePos}
+        >
+          {children}
+        </Menu>
+      </MenuWrapper>
     </Dropdown>
   );
 };
+
+const MenuWrapper = tw.div``;

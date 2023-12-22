@@ -1,5 +1,7 @@
+import { Header } from "root/widgets";
+
 const Index = () => {
-  return <>home</>;
+  return <>Home</>;
 };
 
 export default Index;
