@@ -1,11 +1,7 @@
 import { Header } from "root/widgets";
 
 const Index = () => {
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <>Home</>;
 };
 
 export default Index;
