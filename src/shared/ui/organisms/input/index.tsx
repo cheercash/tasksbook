@@ -20,61 +20,41 @@ export const Input = ({
   hintVariant = "danger",
   ...rest
 }: InputProps) => (
-  <Wrapper>
-    {label && (
+  <InputWrap>
+    <InputElWrapper>
+      <InputBase
+        hasIcon={!!icon}
+        size={size}
+        iconPos={iconPos}
+        {...rest}
+      />
+      {icon && (
+        <IconWrap
+          iconPos={iconPos}
+          size={size}
+        >
+          {icon}
+        </IconWrap>
+      )}
+    </InputElWrapper>
+    {hintText && (
       <Hint
+        variant={hintVariant}
         htmlFor={rest.name}
-        variant="label"
-        icon={labelIcon}
         disabled={rest.disabled}
       >
-        {label}
+        {hintText}
       </Hint>
     )}
-    <InputWrap>
-      <InputElWrapper>
-        <InputBase
-          hasIcon={!!icon}
-          size={size}
-          iconPos={iconPos}
-          {...rest}
-        />
-        {icon && (
-          <IconWrap
-            iconPos={iconPos}
-            size={size}
-          >
-            {icon}
-          </IconWrap>
-        )}
-      </InputElWrapper>
-      {hintText && (
-        <Hint
-          variant={hintVariant}
-          htmlFor={rest.name}
-          disabled={rest.disabled}
-        >
-          {hintText}
-        </Hint>
-      )}
-    </InputWrap>
-  </Wrapper>
+  </InputWrap>
 );
-
-//
-
-const Wrapper = tw.div`
-flex
-flex-col
-gap-2
-w-full
-`;
 
 //
 const InputWrap = tw.div`
 flex
 flex-col
 gap-1
+w-full
 `;
 
 //
