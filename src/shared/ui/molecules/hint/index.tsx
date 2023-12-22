@@ -25,26 +25,35 @@ export const Hint = ({
   htmlFor,
   icon,
 }: HintProps) => {
+  const renderIcon = variant === "label" ? icon : variantToIcon[variant];
+
   return (
     <HintEl
       aria-disabled={disabled}
       htmlFor={htmlFor}
-      disabled={disabled}
       variant={variant}
     >
-      {icon && (
-        <IconWrapper variant={variant}>
-          {variant === "label" ? icon : variantToIcon[variant]}
+      {renderIcon && (
+        <IconWrapper
+          variant={variant}
+          disabled={disabled}
+        >
+          {renderIcon}
         </IconWrapper>
       )}
-      <HintText variant={variant}>{children}</HintText>
+      <HintText
+        disabled={disabled}
+        variant={variant}
+      >
+        {children}
+      </HintText>
     </HintEl>
   );
 };
 
+//
 type HintElProps = {
   variant: ComponentVariant;
-  disabled: boolean;
 };
 
 const HintEl = tw.label<HintElProps>`
@@ -56,6 +65,7 @@ overflow-hidden
 ${(p) => (p.variant === "label" ? "gap-2" : "gap-1")}
 `;
 
+//
 const variantToHintTextStyles: Record<ComponentVariant, string> = {
   danger: "overline1 text-accents-danger",
   label:
@@ -65,30 +75,36 @@ const variantToHintTextStyles: Record<ComponentVariant, string> = {
 
 type HintTextProps = {
   variant: ComponentVariant;
+  disabled: boolean;
 };
 
 const HintText = tw.span<HintTextProps>`
 flex-1
 
 ${(p) => variantToHintTextStyles[p.variant]}
+${(p) =>
+  p.disabled && "text-light-surface-active dark:text-dark-surface-active"}
 `;
 
+//
 const variantToIconWrapperStyles: Record<ComponentVariant, string> = {
-  danger: "text-accents-danger",
-  label: "text-light-contrast dark:text-dark-contrast",
-  success: "text-accents-success",
+  danger: "w-3 h-3 text-accents-danger",
+  label: "w-4 h-4 text-light-contrast dark:text-dark-contrast",
+  success: "w-3 h-3 text-accents-success",
 };
 
 type IconWrapperProps = {
   variant: ComponentVariant;
+  disabled: boolean;
 };
 
 const IconWrapper = tw.i<IconWrapperProps>`
 block
-w-4
-h-4
+shrink-0
 [&>*]:w-full
 [&>*]:h-full
 
 ${(p) => variantToIconWrapperStyles[p.variant]}
+${(p) =>
+  p.disabled && "text-light-surface-active dark:text-dark-surface-active"}
 `;
