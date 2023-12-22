@@ -21,9 +21,9 @@ module.exports = {
         "input-md-icon-px": "2.75rem", // 44px
         "input-lg-icon-px": "4rem", // 64px
 
-        "px-xs": "1rem", // 16px
-        "px-lg": "2rem", // 32px
-        "px-2xl": "4rem", // 64px
+        "xs-px": "1rem", // 16px
+        "lg-px": "2rem", // 32px
+        "2xl-px": "4rem", // 64px
 
         "screen-sm": "36rem", // 576px
         "screen-md": "48rem", // 768px
