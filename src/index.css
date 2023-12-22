@@ -5,8 +5,14 @@
 :root {
   --sidebar-w-lg: 14.5rem;
 
+  --header-h-lg: 5.25rem;
+
   --logo-w: 7.4375rem;
   --logo-h: 54rem;
+}
+
+body {
+  @apply bg-light-main dark:bg-dark-main;
 }
 
 .body1 {
