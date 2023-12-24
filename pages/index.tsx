@@ -1,7 +1,11 @@
-import { Header } from "root/widgets";
+import { home } from "root/routes/pages";
 
 const Index = () => {
-  return <>Home</>;
+  return (
+    <>
+      <home.UI />
+    </>
+  );
 };
 
 export default Index;
