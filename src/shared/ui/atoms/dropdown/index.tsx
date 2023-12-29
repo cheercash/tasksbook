@@ -128,8 +128,5 @@ duration-sm
 
 ${(p) => alignmentToBodyStyles[p.alignY][p.alignX]}
 
-${(p) =>
-  p.isOpen
-    ? "animate-dropdown-open scale-1 opacity-1 translate-y-0"
-    : "animate-dropdown-close scale-75 opacity-0 -translate-y-2"}
+${(p) => (p.isOpen ? "animate-dropdown-open" : "animate-dropdown-close")}
 `;
