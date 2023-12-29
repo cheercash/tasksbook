@@ -10,7 +10,7 @@ const $isAuthorizing = authorizeOnLoadFx.pending;
 
 const $isUserFetchedOnLoad = createStore(false);
 
-type User = {
+export type User = {
   id: number;
   theme: Theme;
   login: string;
@@ -71,6 +71,11 @@ sample({
   target: $isUserFetchedOnLoad,
 });
 
-export const stores = { $user, $isAuthorizing, $isUserFetchedOnLoad };
+export const stores = { $user, $isAuthorizing };
 
-export const events = { onAppLoaded, handleDanger, handleInfo, handleSuccess };
+export const events = {
+  onAppLoaded,
+  handleDanger,
+  handleInfo,
+  handleSuccess,
+};

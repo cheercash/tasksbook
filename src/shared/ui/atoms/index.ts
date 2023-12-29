@@ -7,3 +7,4 @@ export * from "./input-base";
 export * from "./avatar";
 export * from "./container";
 export * from "./skeleton";
+export * from "./fallback";
