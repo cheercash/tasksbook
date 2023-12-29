@@ -1,23 +1,62 @@
 import { useUnit } from "effector-react";
 import { session } from "root/entities";
 import { Theme } from "root/shared/api/type";
-import { MenuItem, MoonIcon } from "root/shared/ui/atoms";
+import { DeviceIcon, Fallback, MenuItem, MoonIcon } from "root/shared/ui/atoms";
 import tw from "tailwind-styled-components";
+import { events, stores } from "../model";
+import { useTheme } from "root/shared/hooks";
 
 export type SwitchThemeProps = {};
 
-const themeToName: Record<Theme, string> = {
-  DARK: "тёмная",
-  LIGHT: "светлая",
-  SYSTEM: "системная",
+const themeToOptions: Record<Theme, { icon: JSX.Element; title: string }> = {
+  DARK: {
+    icon: <MoonIcon />,
+    title: "тёмная",
+  },
+  LIGHT: {
+    // TODO: replace with right icon
+    icon: <>sun</>,
+    title: "светлая",
+  },
+  SYSTEM: {
+    icon: <DeviceIcon />,
+    title: "системная",
+  },
 };
 
 export const SwitchTheme = ({}: SwitchThemeProps) => {
-  const user = useUnit(session.model.stores.$user);
+  const [user, onSwitchButtonClicked, isSwitching] = useUnit([
+    session.model.stores.$user,
+    events.onSwitchButtonClicked,
+    stores.$isThemeSwitching,
+  ]);
+
+  useTheme(user?.theme ?? "SYSTEM");
+
+  if (!user) {
+    return <></>;
+  }
+
+  const themeOption = themeToOptions[user.theme];
 
   return (
-    <MenuItem icon={<MoonIcon />}>
-      Тема: {themeToName[user?.theme ?? "SYSTEM"]}
+    <MenuItem
+      onClick={onSwitchButtonClicked}
+      icon={
+        <Fallback
+          fallbackElement={<>Spin</>}
+          isLoading={isSwitching}
+        >
+          {themeOption.icon}
+        </Fallback>
+      }
+    >
+      <Fallback
+        fallbackElement={"Смена..."}
+        isLoading={isSwitching}
+      >
+        Тема: {themeOption.title}
+      </Fallback>
     </MenuItem>
   );
 };

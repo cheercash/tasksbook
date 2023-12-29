@@ -8,3 +8,4 @@ export * from "./person-icon";
 export * from "./settings-icon";
 export * from "./sign-out-icon";
 export * from "./star-icon";
+export * from "./device-icon";

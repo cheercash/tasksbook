@@ -137,7 +137,6 @@ const AuthorizedMenu = () => (
 //
 const NonAuthorizedMenu = () => (
   <>
-    <SwitchTheme />
     <MenuItem icon={<StarIcon className="text-accents-primary" />}>
       <span className="text-accents-primary">Премиум</span>
     </MenuItem>
