@@ -111,7 +111,7 @@ module.exports = {
     animation: {
       bubble: "bubble 0.36s 1 ease-in-out",
       "dropdown-open": "dropdown-open 0.16s 1 ease-in-out forwards",
-      "dropdown-close": "dropdown-close 0.16s 0.16s 1 ease-in-out forwards",
+      "dropdown-close": "dropdown-close 0.16s 1 ease-in-out forwards",
     },
     keyframes: {
       bubble: {
@@ -127,10 +127,31 @@ module.exports = {
       "dropdown-open": {
         "0%": {
           display: "block",
+          scale: "0.75",
+          opacity: "0",
+          transform: "translateY(0rem)",
+        },
+        "100%": {
+          scale: "1",
+          opacity: "1",
+          transform: "translateY(0.5rem)",
         },
       },
       "dropdown-close": {
-        "0%": { display: "none" },
+        "0%": {
+          display: "block",
+          scale: "1",
+          opacity: "1",
+          transform: "translateY(0.5rem)",
+        },
+        "99%": {
+          scale: "0.75",
+          opacity: "0",
+          transform: "translateY(0)",
+        },
+        "100%": {
+          display: "none",
+        },
       },
     },
   },
