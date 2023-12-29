@@ -6,3 +6,4 @@ export * from "./dropdown";
 export * from "./input-base";
 export * from "./avatar";
 export * from "./container";
+export * from "./skeleton";
