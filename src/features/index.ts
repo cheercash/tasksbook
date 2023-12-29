@@ -1,2 +1,1 @@
-// TODO
-export {};
+export * as switchTheme from "./switch-theme";
