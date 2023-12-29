@@ -17,10 +17,6 @@ type AuthorizeOnLoadResponse = {
 export const authorizeOnLoadReq = async () =>
   new Promise<AuthorizeOnLoadResponse>((res, rej) => {
     setTimeout(() => {
-      if (Math.random() * 10 < 3) {
-        rej(new Error("You are not authenticated"));
-      }
-
       res({
         id: 1,
         email: "user.email@mail.com",
@@ -28,7 +24,9 @@ export const authorizeOnLoadReq = async () =>
         lastName: "LastName",
         login: "usr_lgn",
         theme: "SYSTEM",
-        avatarUrl: Math.random() * 10 > 7 ? UserAvatar : null,
+        avatarUrl: Math.random() * 10 > 5 ? UserAvatar : null,
       });
+
+      // rej(new Error("описание ошибки авторизации"));
     }, 1000);
   });

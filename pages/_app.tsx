@@ -3,6 +3,8 @@ import { AppProps } from "next/app";
 import { useEffect } from "react";
 import { session } from "root/entities";
 
+import "root/processes/notification";
+
 import "root/index.css";
 import { ModalProvider } from "root/routes/modals/modal-provider";
 
