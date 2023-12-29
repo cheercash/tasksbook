@@ -83,7 +83,7 @@ relative
 px-el-md-px
 overflow-hidden
 
-${(p) => p.disabled && "cursor-not-allowed"}
+${(p) => (p.disabled ? "cursor-not-allowed" : "cursor-pointer")}
 
 ${(p) =>
   activeAndDisabledToStyles[p.active ? "active" : "non-active"][

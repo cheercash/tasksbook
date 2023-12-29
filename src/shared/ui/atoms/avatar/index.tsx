@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import tw from "tailwind-styled-components";
 
 export type AvatarProps = {
-  src?: string | StaticImageData;
+  src?: string | StaticImageData | null;
   placeholder: string;
   size?: AvatarSize;
 };
