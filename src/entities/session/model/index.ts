@@ -1,7 +1,8 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
 import { authorizeOnLoadReq } from "../api";
-import { Theme } from "root/shared/api/type";
+import { NotificationBody, Theme } from "root/shared/api/type";
 import { StaticImageData } from "next/image";
+import { createNotificationFabric } from "root/shared/fabrics";
 
 const authorizeOnLoadFx = createEffect(authorizeOnLoadReq);
 
@@ -26,7 +27,7 @@ const onAppLoaded = createEvent();
 
 const handleAuthorizeOnLoad = createEvent();
 
-const handleError = createEvent<Error>();
+const { handleDanger, handleInfo, handleSuccess } = createNotificationFabric();
 
 sample({
   clock: onAppLoaded,
@@ -47,8 +48,21 @@ sample({
 });
 
 sample({
+  clock: authorizeOnLoadFx.doneData,
+  fn: (clk): NotificationBody => ({
+    title: null,
+    description: "Вы успешно авторизовались",
+  }),
+  target: handleSuccess,
+});
+
+sample({
   clock: authorizeOnLoadFx.failData,
-  target: handleError,
+  fn: (clk): NotificationBody => ({
+    description: clk.message,
+    title: "Ошибка авторизации:",
+  }),
+  target: handleDanger,
 });
 
 sample({
@@ -59,4 +73,4 @@ sample({
 
 export const stores = { $user, $isAuthorizing, $isUserFetchedOnLoad };
 
-export const events = { onAppLoaded, handleError };
+export const events = { onAppLoaded, handleDanger, handleInfo, handleSuccess };
